@@ -3,14 +3,15 @@ require 'csv'
 namespace :csv_load do
 
   desc 'Run all CSV load tasks'
-  task all: [:destroy_all, :create_customers, :create_merchants, :create_items, :create_invoices, :create_transactions, :create_invoice_items, :reset_all_pks]
+  task all: [:destroy_all, :create_customers, :create_merchants, :create_discounts, :create_items, :create_invoices, :create_transactions, :create_invoice_items, :reset_all_pks]
 
   desc "Destroys all existing seed data, in order to properly seed new data"
   task destroy_all: :environment do 
     InvoiceItem.destroy_all
     Transaction.destroy_all
-    Item.destroy_all
     Invoice.destroy_all
+    Item.destroy_all
+    Discount.destroy_all
     Merchant.destroy_all
     Customer.destroy_all
     puts "All seeds destroyed"
@@ -23,7 +24,6 @@ namespace :csv_load do
       CSV.foreach(path, :headers => true) do |row|
           Customer.create!(row.to_hash)
         end
-      # ActiveRecord::Base.connection.reset_pk_sequence!('customers')
       puts "Inserted #{Customer.all.count} Customers"
   end
 
@@ -61,6 +61,14 @@ namespace :csv_load do
           Merchant.create!(row.to_hash)
       end
       puts "Inserted #{Merchant.all.count} Merchants"
+  end
+
+  desc 'Create all Discounts'
+  task create_discounts: :environment do
+    CSV.foreach('./db/data/discounts.csv', headers: true) do |row|
+      Discount.create!(row.to_hash)
+    end
+    puts "Inserted #{Discount.all.count} Discounts"
   end
 
   desc "Create all transactions"
