@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 require './app/models/api/holiday_search'
 
 RSpec.describe HolidaySearch do 

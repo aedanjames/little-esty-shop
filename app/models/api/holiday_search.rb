@@ -1,4 +1,3 @@
-require 'pry'
 require './app/models/api/holiday_service'
 require './app/models/api/holiday'
 

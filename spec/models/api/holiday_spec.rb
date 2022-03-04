@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 require './app/models/api/holiday'
 
 RSpec.describe Holiday, type: :model do 

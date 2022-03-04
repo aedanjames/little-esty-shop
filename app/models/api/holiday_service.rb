@@ -1,6 +1,5 @@
 require 'faraday'
 require 'json'
-require 'pry'
 require './app/models/api/holiday_search'
 
 class HolidayService
