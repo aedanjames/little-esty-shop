@@ -37,7 +37,7 @@ RSpec.describe 'The Merchant Discounts Index' do
     within '#five' do 
       expect(page).to have_link(@discount1.name)
       click_link(@discount1.name)
-      expect(current_path).to eq(merchant_discount_path(@merchant1.id, @discount1.id))
+      expect(current_path).to eq(merchant_discount_path(@merchant.id, @discount1.id))
     end 
   end
 end
