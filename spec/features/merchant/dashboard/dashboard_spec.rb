@@ -121,8 +121,9 @@ RSpec.describe 'The Merchant Dashboard' do
   end
 
   it 'displays a link that brings a merchant user to the merchants discount index page' do 
-    expect(page).to have_link("Bulk Discounts for #{@mrpickles.name}")
-    click_link("Bulk Discounts for #{@mrpickles.name}")
-    expect(current_path).to eq(merchant_discounts_path(@mrpickles.id))
+    visit merchant_dashboard_index_path(@katz)
+    expect(page).to have_link("Bulk Discounts for #{@katz.name}")
+    click_link("Bulk Discounts for #{@katz.name}")
+    expect(current_path).to eq(merchant_discounts_path(@katz.id))
   end 
 end
