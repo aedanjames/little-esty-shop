@@ -3,6 +3,7 @@
   get '/merchants', to: 'merchants#index'
   get '/', to: 'application#welcome'
     resources :merchants, only: [:show, :index, :update, :post], module: :merchant do
+      resources :discounts, only: [:index, :show]
       resources :invoices, only: [:index, :show, :update]
       resources :dashboard, only: [:index]
       resources :items, only: [:index, :show, :edit, :update, :new, :create]

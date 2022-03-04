@@ -4,6 +4,11 @@
   <%= link_to "#{@merchant.name}'s invoices", merchant_invoices_path(@merchant.id) %>
 </header>
 
+
+<div id="discounts">
+<p><%= link_to "Bulk Discounts for #{@merchant.name}", merchant_discounts_path(@merchant.id) %></p>
+</div>
+
 <div id="stats">
   <p>Top 5 customers</p>
   <% @merchant.top_five_customers.each do |customer| %>
