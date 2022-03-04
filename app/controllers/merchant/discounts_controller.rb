@@ -1,6 +1,6 @@
 class Merchant::DiscountsController < ApplicationController 
   def index 
-    @discounts = set_merchant.discounts
+    @merchant = set_merchant
   end 
 
 private
