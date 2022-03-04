@@ -22,6 +22,8 @@ RSpec.describe 'The Merchant Discounts Index' do
     within '#edit' do 
     expect(page).to have_link("Edit #{@discount1.name}")
     expect(page).to have_no_link("Edit #{@discount2.name}")
+    click_link("Edit #{@discount1.name}")
+    expect(current_path).to eq("edit_merchant_discount_path(@merchant, @discount)")
     end 
   end 
 end 
