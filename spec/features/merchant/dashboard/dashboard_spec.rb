@@ -119,4 +119,10 @@ RSpec.describe 'The Merchant Dashboard' do
       expect(page).to have_content(@katz.top_five_customers.last.transaction_count)
     end
   end
+
+  it 'displays a link that brings a merchant user to the merchants discount index page' do 
+    expect(page).to have_link("Bulk Discounts for #{@mrpickles.name}")
+    click_link("Bulk Discounts for #{@mrpickles.name}")
+    expect(current_path).to eq(merchant_discounts_path(@mrpickles.id))
+  end 
 end
