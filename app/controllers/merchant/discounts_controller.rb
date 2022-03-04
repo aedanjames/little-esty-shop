@@ -8,6 +8,7 @@ class Merchant::DiscountsController < ApplicationController
   end 
 
   def show 
+    @merchant = set_merchant
     @discount = set_discount
   end
 
