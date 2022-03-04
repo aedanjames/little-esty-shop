@@ -10,3 +10,14 @@
   </section>
 <% end %>
 </section>
+
+<section id= "Upcoming Holidays">
+P<h2>Upcoming Holidays</h2>
+<% @upcoming_holidays.next_three_holidays.each do |holiday| %>
+  <section id= "<%= holiday[:name].parameterize %>">
+    <p>name: <%= holiday[:name] %></p>
+    <p>date: <%= holiday[:date] %></p>
+  </section>
+<% end %>
+
+</section>

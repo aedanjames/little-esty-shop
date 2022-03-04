@@ -40,4 +40,25 @@ RSpec.describe 'The Merchant Discounts Index' do
       expect(current_path).to eq(merchant_discount_path(@merchant.id, @discount1.id))
     end 
   end
+
+  it 'has a section for Upcoming Holidays' do 
+    visit merchant_discounts_path(@merchant.id)
+    expect(page).to have_content("Upcoming Holidays")
+  end 
+
+  it 'lists the name and dates for the next three holidays' do 
+    visit merchant_discounts_path(@merchant.id)
+    within '#good-friday' do 
+      expect(page).to have_content("Good Friday")
+      expect(page).to have_content("2022-04-15")
+    end 
+    within '#memorial-day' do 
+      expect(page).to have_content("Memorial Day")
+      expect(page).to have_content("2022-05-30")
+    end 
+    within '#juneteenth' do 
+      expect(page).to have_content("Juneteenth")
+      expect(page).to have_content("2022-06-20")
+    end 
+  end 
 end
