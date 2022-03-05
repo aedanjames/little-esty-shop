@@ -7,6 +7,7 @@ RSpec.describe Invoice, type: :model do
     it {should have_many(:invoice_items)}
     it {should have_many(:items).through(:invoice_items)}
     it {should have_many(:merchants).through(:items)}
+    it {should have_many(:discounts).through(:merchants)}
   end
 
   describe 'validations' do
@@ -73,8 +74,17 @@ RSpec.describe Invoice, type: :model do
     describe 'display date' do
       it 'returns a date formated long' do
         expect(@invoice1.display_date).to eq(Date.today.strftime("%A, %B %d, %Y"))
-       end
-     end
+      end
+    end
+
+    describe '.discounted_invoice_revenue' do 
+      it 'returns the total revenue for the invoice minus discounts' do 
+        discount1 = @merchant.discounts.create!(name: 'two', threshold: 2, percentage: 20)
+        discount2 = @merchant.discounts.create!(name: 'smaller two', threshold: 2, percentage: 15)
+        discount3 = @merchant.discounts.create!(name: 'ten', threshold: 10, percentage: 30)
+        expect(@invoice1.discounted_invoice_revenue).to eq(4.8)
+      end 
+    end 
   end
 end
 

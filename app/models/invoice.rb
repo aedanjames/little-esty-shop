@@ -5,6 +5,7 @@ class Invoice < ApplicationRecord
   has_many :invoice_items
   has_many :items, through: :invoice_items
   has_many :merchants, through: :items
+  has_many :discounts, through: :merchants
 
   scope :with_successful_transactions, -> { joins(:transactions)
   .where("transactions.result =?", 0)}
@@ -34,5 +35,12 @@ class Invoice < ApplicationRecord
                   .order(created_at: :asc)
                   .distinct
   end
+
+  
+  def discounted_invoice_revenue
+    invoice_items.sum do |invoice_item|
+    invoice_item.discounted_revenue
+    end.round(2)
+  end 
 
 end
