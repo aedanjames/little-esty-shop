@@ -37,6 +37,6 @@ RSpec.describe 'The Merchant Discounts Index' do
     click_button "Update Discount"
     expect(current_path).to eq(merchant_discount_path(@merchant.id, @discount1.id))
     expect(page).to have_content('Discount Update Failed')
-    
+    expect(page).to have_content "five"
   end 
 end
