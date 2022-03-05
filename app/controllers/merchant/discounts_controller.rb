@@ -13,7 +13,13 @@ class Merchant::DiscountsController < ApplicationController
   end
 
   def edit 
+    @merchant = set_merchant 
+    @discount = set_discount
   end 
+
+  def update 
+    binding.pry
+  end
 
 private
   def set_merchant 
