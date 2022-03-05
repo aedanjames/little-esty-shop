@@ -28,4 +28,15 @@ RSpec.describe 'The Merchant Discounts Index' do
     expect(page).to have_content('12')
     expect(page).to have_no_content('five')
   end 
+
+  it 'returns an error message if form is missing field' do 
+    visit edit_merchant_discount_path(@merchant.id, @discount1.id)
+    fill_in 'Name', with: ""
+    fill_in 'Threshold', with: "2"
+    fill_in 'Percentage', with: "12"
+    click_button "Update Discount"
+    expect(current_path).to eq(merchant_discount_path(@merchant.id, @discount1.id))
+    expect(page).to have_content('Discount Update Failed')
+    
+  end 
 end

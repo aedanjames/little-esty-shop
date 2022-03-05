@@ -20,8 +20,11 @@ class Merchant::DiscountsController < ApplicationController
   def update 
     discount = set_discount
     merchant = set_merchant
-    discount.update(discount_params)
-    redirect_to merchant_discount_path(merchant.id, discount.id)
+    if discount.update(discount_params)
+      redirect_to merchant_discount_path(merchant.id, discount.id), flash: {notice: "Discount Successfully Updated"}
+    else 
+      redirect_to merchant_discount_path(merchant.id, discount.id), flash: {notice: "Discount Update Failed"}
+    end 
   end
 
 private
