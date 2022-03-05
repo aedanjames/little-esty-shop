@@ -1,15 +1,7 @@
+<center> 
+<h1>Discount Edit Form</h1>
+</center>
 
-<%= form_for [@merchant, @discount], local: true do |form|%>
-
-<%= form.label :name %>
-<%= form.text_field :name %>
-
-<%= form.label :threshold %>
-<%= form.number_field :threshold, min: 1 %>
-
-<%= form.label :percentage %>
-<%= form.number_field :percentage, min: 1, max: 100 %>
-
-<%= form.submit %>
-
-<% end %>
+<center>
+<%= render "shared/discount_form" %>
+</center>
