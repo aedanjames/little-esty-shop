@@ -61,11 +61,14 @@ RSpec.describe InvoiceItem, type: :model do
     end 
 
     describe '.discounted_revenue' do 
-      it 'returns the revenue after applying a discount' do 
+      it 'returns the revenue after applying a discount, unless no discount exists, in which case it returns the full revenue' do 
         discount1 = @merchant.discounts.create!(name: 'two', threshold: 2, percentage: 20)
         discount2 = @merchant.discounts.create!(name: 'smaller two', threshold: 2, percentage: 15)
         discount3 = @merchant.discounts.create!(name: 'ten', threshold: 10, percentage: 30)
         expect(@invoice_item1.discounted_revenue).to eq(1.6)
+        actual = @invoice_item3.discounted_revenue
+        expected = @invoice_item3.full_revenue
+        expect(actual).to eq(expected)
       end 
     end 
   end

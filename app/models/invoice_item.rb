@@ -29,7 +29,7 @@ class InvoiceItem < ApplicationRecord
     if return_discount.present?
       (full_revenue - (full_revenue * (return_discount.percentage.to_f / 100)).round(2))
     else 
-      full_amount
+      full_revenue
     end
   end
 end
