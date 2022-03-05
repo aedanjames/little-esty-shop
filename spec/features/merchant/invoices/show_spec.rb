@@ -46,4 +46,15 @@ RSpec.describe 'The Merchant Invoice Show Page' do
     end
     expect(page).to have_content ("Item Status Has Been Updated!")
   end 
+
+  it 'shows the total discounted revenue from an invoice' do 
+    discount1 = @merchant.discounts.create!(name: 'two', threshold: 2, percentage: 20)
+    discount2 = @merchant.discounts.create!(name: 'smaller two', threshold: 2, percentage: 15)
+    discount3 = @merchant.discounts.create!(name: 'ten', threshold: 10, percentage: 30)
+    visit merchant_invoice_path(@merchant.id, @invoice1.id)
+    within '.total_discounted_revenue' do 
+      expect(page).to have_content(33.6)
+    end 
+    expect(page).to have_no_content(@invoice2.discounted_invoice_revenue)
+  end 
 end

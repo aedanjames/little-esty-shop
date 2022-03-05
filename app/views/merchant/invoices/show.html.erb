@@ -5,6 +5,10 @@
   <p>Total Revenue: <%=@invoice.invoice_revenue %></p>
 </div>
 
+<div class="total_discounted_revenue" >
+  <p>Discounted Revenue: <%= @invoice.discounted_invoice_revenue %>
+</div>
+
 <div class="invoice_information">
   <p>Invoice Id: <%= @invoice.id %></p>
   <p>Invoice Status: <%= @invoice.status %></p>
