@@ -5,6 +5,7 @@ RSpec.describe InvoiceItem, type: :model do
     it {should belong_to(:item)}
     it {should belong_to(:invoice)}
     it {should have_many(:merchants).through(:item)}
+    it {should have_many(:discounts).through(:merchants)}
   end
 
   describe 'validations' do
@@ -29,6 +30,7 @@ RSpec.describe InvoiceItem, type: :model do
     @invoice_item2 = InvoiceItem.create!(item_id: @item2.id, invoice_id: @invoice2.id, quantity: 2, unit_price: 400, status: 0)
     @invoice_item3 = InvoiceItem.create!(item_id: @item3.id, invoice_id: @invoice3.id, quantity: 2, unit_price: 200, status: 1)
     @invoice_item4 = InvoiceItem.create!(item_id: @item2.id, invoice_id: @invoice1.id, quantity: 2, unit_price: 100, status: 2)
+
   end
 
   describe 'instance methods' do
@@ -36,10 +38,38 @@ RSpec.describe InvoiceItem, type: :model do
       it "lists items names that are on invoices" do
         expect(@invoice_item2.get_name_from_invoice).to eq("more food")
       end
-      it 'will change unit price in cents to a diaplay price' do
 
+      it 'will change unit price in cents to a diaplay price' do
        expect(@invoice_item4.display_price).to eq('1.00')
       end
     end
+    
+    describe '.full_revenue' do 
+      it 'returns the total revenue from the invoice_item excluding discounts' do
+        expect(@invoice_item1.full_revenue).to eq(2)
+        expect(@invoice_item2.full_revenue).to eq(8)
+      end 
+    end 
+    
+    describe '.return_discount' do 
+      it 'returns the discount to be applied, if multiple discounts qualify it returns the highest percentage discount' do 
+        discount1 = @merchant.discounts.create!(name: 'two', threshold: 2, percentage: 20)
+        discount2 = @merchant.discounts.create!(name: 'smaller two', threshold: 2, percentage: 15)
+        discount3 = @merchant.discounts.create!(name: 'ten', threshold: 10, percentage: 30)
+        expect(@invoice_item1.return_discount).to eq(discount1)
+      end 
+    end 
+
+    describe '.discounted_revenue' do 
+      it 'returns the revenue after applying a discount, unless no discount exists, in which case it returns the full revenue' do 
+        discount1 = @merchant.discounts.create!(name: 'two', threshold: 2, percentage: 20)
+        discount2 = @merchant.discounts.create!(name: 'smaller two', threshold: 2, percentage: 15)
+        discount3 = @merchant.discounts.create!(name: 'ten', threshold: 10, percentage: 30)
+        expect(@invoice_item1.discounted_revenue).to eq(1.6)
+        actual = @invoice_item3.discounted_revenue
+        expected = @invoice_item3.full_revenue
+        expect(actual).to eq(expected)
+      end 
+    end 
   end
 end

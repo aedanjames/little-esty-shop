@@ -3,6 +3,7 @@ class InvoiceItem < ApplicationRecord
   belongs_to :invoice
   belongs_to :item
   has_many :merchants, through: :item
+  has_many :discounts, through: :merchants
 
   def get_name_from_invoice
     item.name
@@ -11,5 +12,24 @@ class InvoiceItem < ApplicationRecord
   def display_price
     cents = self.unit_price
     '%.2f' % (cents / 100.0)
+  end
+
+  def full_revenue
+    ((unit_price * quantity)/100).round
+  end 
+
+  def return_discount
+    item.merchant.discounts
+    .where('discounts.threshold <= ?', quantity)
+    .order(percentage: :desc)
+    .first
+  end 
+
+  def discounted_revenue 
+    if return_discount.present?
+      (full_revenue - (full_revenue * (return_discount.percentage.to_f / 100)).round(2))
+    else 
+      full_revenue
+    end
   end
 end
