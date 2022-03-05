@@ -1,7 +1,9 @@
+<center>
 <h1><%= "Bulk Discounts for #{@merchant.name}"%></h1>
+</center>
 
+<center>
 <section id="discounts">
-
 <% @merchant.discounts.each do |discount| %> 
   <section id= "<%= discount.name.parameterize %>">
     <p>name: <%= link_to "#{discount.name}", merchant_discount_path(@merchant.id, discount.id) %></p>
@@ -10,9 +12,11 @@
   </section>
 <% end %>
 </section>
+</center>
 
+<center>
 <section id= "Upcoming Holidays">
-P<h2>Upcoming Holidays</h2>
+<h2>Upcoming Holidays</h2>
 <% @upcoming_holidays.next_three_holidays.each do |holiday| %>
   <section id= "<%= holiday[:name].parameterize %>">
     <p>name: <%= holiday[:name] %></p>
@@ -21,3 +25,4 @@ P<h2>Upcoming Holidays</h2>
 <% end %>
 
 </section>
+</center>

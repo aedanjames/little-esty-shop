@@ -8,7 +8,23 @@ class Merchant::DiscountsController < ApplicationController
   end 
 
   def show 
+    @merchant = set_merchant
     @discount = set_discount
+  end
+
+  def edit 
+    @merchant = set_merchant 
+    @discount = set_discount
+  end 
+
+  def update 
+    discount = set_discount
+    merchant = set_merchant
+    if discount.update(discount_params)
+      redirect_to merchant_discount_path(merchant.id, discount.id), flash: {notice: "Discount Successfully Updated"}
+    else 
+      redirect_to merchant_discount_path(merchant.id, discount.id), flash: {notice: "Discount Update Failed"}
+    end 
   end
 
 private
@@ -18,5 +34,9 @@ private
 
   def set_discount
     Discount.find(params[:id])
+  end 
+
+  def discount_params 
+    params.require(:discount).permit(:name, :threshold, :percentage, :merchant_id)
   end 
 end 

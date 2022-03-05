@@ -14,5 +14,16 @@ RSpec.describe 'The Merchant Discounts Index' do
       expect(page).to have_content(@discount1.threshold)
       expect(page).to have_content(@discount1.percentage)
     end 
+    expect(page).to have_no_content(@discount2.name)
+  end 
+
+  it 'has a link to bring the user to a form to edit the discount' do 
+    visit merchant_discount_path(@merchant.id, @discount1.id)
+    within '#edit' do 
+    expect(page).to have_link("Edit #{@discount1.name}")
+    expect(page).to have_no_link("Edit #{@discount2.name}")
+    click_link("Edit #{@discount1.name}")
+    expect(current_path).to eq(edit_merchant_discount_path(@merchant.id, @discount1.id))
+    end 
   end 
 end 
