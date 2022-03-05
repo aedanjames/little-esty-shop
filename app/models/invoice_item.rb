@@ -3,6 +3,7 @@ class InvoiceItem < ApplicationRecord
   belongs_to :invoice
   belongs_to :item
   has_many :merchants, through: :item
+  has_many :discounts, through: :merchants
 
   def get_name_from_invoice
     item.name
