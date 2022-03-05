@@ -26,6 +26,10 @@ class InvoiceItem < ApplicationRecord
   end 
 
   def discounted_revenue 
-
+    if return_discount.present?
+      (full_revenue - (full_revenue * (return_discount.percentage.to_f / 100)).round(2))
+    else 
+      full_amount
+    end
   end
 end
