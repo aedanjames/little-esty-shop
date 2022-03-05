@@ -37,10 +37,16 @@ RSpec.describe InvoiceItem, type: :model do
       it "lists items names that are on invoices" do
         expect(@invoice_item2.get_name_from_invoice).to eq("more food")
       end
-      it 'will change unit price in cents to a diaplay price' do
 
+      it 'will change unit price in cents to a diaplay price' do
        expect(@invoice_item4.display_price).to eq('1.00')
       end
     end
+    
+    describe '.full_revenue' do 
+      it 'returns the total revenue from the invoice excluding discounts' do
+        expect(@invoice_item1.full_revenue).to eq(2)
+      end 
+    end 
   end
 end

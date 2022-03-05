@@ -13,4 +13,8 @@ class InvoiceItem < ApplicationRecord
     cents = self.unit_price
     '%.2f' % (cents / 100.0)
   end
+
+  def full_revenue
+    ((unit_price * quantity)/100).round
+  end 
 end
