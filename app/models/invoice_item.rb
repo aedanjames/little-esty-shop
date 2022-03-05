@@ -17,4 +17,15 @@ class InvoiceItem < ApplicationRecord
   def full_revenue
     ((unit_price * quantity)/100).round
   end 
+
+  def return_discount
+    item.merchant.discounts
+    .where('discounts.threshold <= ?', quantity)
+    .order(percentage: :desc)
+    .first
+  end 
+
+  def discounted_revenue 
+
+  end
 end

@@ -30,6 +30,7 @@ RSpec.describe InvoiceItem, type: :model do
     @invoice_item2 = InvoiceItem.create!(item_id: @item2.id, invoice_id: @invoice2.id, quantity: 2, unit_price: 400, status: 0)
     @invoice_item3 = InvoiceItem.create!(item_id: @item3.id, invoice_id: @invoice3.id, quantity: 2, unit_price: 200, status: 1)
     @invoice_item4 = InvoiceItem.create!(item_id: @item2.id, invoice_id: @invoice1.id, quantity: 2, unit_price: 100, status: 2)
+
   end
 
   describe 'instance methods' do
@@ -46,6 +47,15 @@ RSpec.describe InvoiceItem, type: :model do
     describe '.full_revenue' do 
       it 'returns the total revenue from the invoice excluding discounts' do
         expect(@invoice_item1.full_revenue).to eq(2)
+      end 
+    end 
+    
+    describe '.return_discount' do 
+      it 'returns the discount to be applied, if multiple discounts qualify it returns the highest percentage discount' do 
+        discount1 = @merchant.discounts.create!(name: 'two', threshold: 2, percentage: 20)
+        discount2 = @merchant.discounts.create!(name: 'smaller two', threshold: 2, percentage: 15)
+        discount3 = @merchant.discounts.create!(name: 'ten', threshold: 10, percentage: 30)
+        expect(@invoice_item1.return_discount).to eq(discount1)
       end 
     end 
   end
