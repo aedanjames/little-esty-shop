@@ -24,6 +24,10 @@
       <p>Item price sold at: $<%= ii.item.display_price %></p>
       <p>Item status: <%= ii.status %></p>
 
+      <% if ii.return_discount.present? %>
+        <p>Applied Discount: <%= link_to "#{ii.return_discount.name}", merchant_discount_path(@merchant.id, ii.return_discount.id) %></p>
+      <% end %>
+
       <%= form_with url: merchant_invoice_path(@merchant.id, @invoice.id), method: :patch, local: true do |form| %>
             <%= form.hidden_field :ii_id, value: ii.id %>
             <%= form.select :status, options_for_select([:pending, :packaged, :shipped], ii.status) %>
