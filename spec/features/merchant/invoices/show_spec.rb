@@ -58,16 +58,17 @@ RSpec.describe 'The Merchant Invoice Show Page' do
     expect(page).to have_no_content(@invoice2.discounted_invoice_revenue)
   end 
 
-  it 'has a link next to each invoice_item that brings the user to the discount show page' do 
+  it 'has a link next to each invoice_item that brings the user to the discount show page if a discount exists for that invoice item' do 
     discount1 = @merchant.discounts.create!(name: 'two', threshold: 2, percentage: 20)
     discount2 = @merchant.discounts.create!(name: 'smaller two', threshold: 2, percentage: 15)
     discount3 = @merchant.discounts.create!(name: 'ten', threshold: 10, percentage: 30)
     visit merchant_invoice_path(@merchant.id, @invoice1.id)
     within "div#id-#{@invoice_item1.id}" do 
       expect(page).to have_link(discount1.name)
-      expect(page).to have_no_link(discount2.name)
       click_link(discount1.name)
       expect(current_path).to eq(merchant_discount_path(@merchant.id, discount1.id))
     end
+    expect(page).to have_no_link(discount2.name)
+    expect(page).to have_no_link(discount3.name)
   end 
 end
