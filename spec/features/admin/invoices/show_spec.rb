@@ -115,10 +115,8 @@ RSpec.describe 'The Admin Invoices Show' do
   end
 
   describe 'list list the invoice attributes' do
-    it 'will list the details of an invoice' do
-
+    it 'lists the details of an invoice' do
       visit admin_invoice_path(@invoice7)
-
       expect(page).to have_content(@invoice7.id)
       expect(page).to have_content('completed')
       expect(page).to have_content(@invoice7.display_date)
@@ -126,17 +124,14 @@ RSpec.describe 'The Admin Invoices Show' do
       expect(page).to have_content(@invoice7.revenue_display_price)
     end
 
-    it 'will list the details of the items on the invoice' do
-
+    it 'lists the details of the items on the invoice' do
       visit admin_invoice_path(@invoice16)
-
       expect(page).to have_content(@invoice16.id)
       expect(page).to have_content('cancelled')
       expect(page).to have_content(@invoice16.display_date)
       expect(page).to have_content(@invoice16.customer_name)
 
       within("#invoice_items-0") do
-
         expect(page).to have_content(@item15.name)
         expect(page).to have_content(@invoice_item36.quantity)
         expect(page).to have_content(@invoice_item36.display_price)
@@ -144,7 +139,6 @@ RSpec.describe 'The Admin Invoices Show' do
       end
 
       within("#invoice_items-1") do
-
         expect(page).to have_content(@item10.name)
         expect(page).to have_content(@invoice_item37.quantity)
         expect(page).to have_content(@invoice_item37.display_price)
@@ -152,13 +146,11 @@ RSpec.describe 'The Admin Invoices Show' do
       end
 
       within("#invoice_items-2") do
-
         expect(page).to have_content(@item16.name)
         expect(page).to have_content(@invoice_item38.quantity)
         expect(page).to have_content(@invoice_item38.display_price)
         expect(page).to have_content(@invoice_item38.status)
       end
-
       expect(page).not_to have_content(@item3.name)
       expect(page).not_to have_content(@item4.name)
     end
@@ -179,7 +171,17 @@ RSpec.describe 'The Admin Invoices Show' do
       expect(page).to have_content(@invoice12.id)
       expect(page).to have_content('cancelled')
       expect(page).to have_content("Invoice Status Has Been Updated!")
+    end
+  end
 
+  it 'displays the discounted revenue for the invoice' do
+    discount1 = @merchant1.discounts.create!(name: 'two', threshold: 2, percentage: 20)
+    discount2 = @merchant1.discounts.create!(name: 'smaller two', threshold: 2, percentage: 15)
+    discount3 = @merchant2.discounts.create!(name: 'ten', threshold: 10, percentage: 30)
+    visit admin_invoice_path(@invoice4)
+    within '#revenue' do 
+      expect(page).to have_content("$962")
+      expect(@invoice4.discounted_invoice_revenue).to_not eq(@invoice4.invoice_revenue)
     end
   end
 end

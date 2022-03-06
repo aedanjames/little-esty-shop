@@ -42,5 +42,4 @@ class Invoice < ApplicationRecord
     invoice_item.discounted_revenue
     end.round(2)
   end 
-
 end
