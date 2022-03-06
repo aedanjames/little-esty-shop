@@ -74,6 +74,7 @@ RSpec.describe 'The Admin Merchants Index' do
     visit admin_merchants_path
     within '#enabled' do
       expect(page).to have_content("Enabled Merchants")
+      expect(page).to have_link("Invoices For #{merchant1.name}")
       expect(page).to have_content(merchant1.name)
       expect(page).to have_content(merchant2.name)
       expect(page).to have_content(merchant3.name)
@@ -93,6 +94,7 @@ RSpec.describe 'The Admin Merchants Index' do
 
     visit admin_merchants_path
     within '#disabled' do
+      expect(page).to have_link("Invoices For #{merchant4.name}")
       expect(page).to have_content("Disabled Merchants")
       expect(page).to have_content(merchant4.name)
       expect(page).to have_content(merchant5.name)
@@ -150,7 +152,7 @@ RSpec.describe 'The Admin Merchants Index' do
 
     visit admin_merchants_path
     within "#top_merchant-#{merchant1.id}" do 
-      expect(page).to have_link(merchant1.name)
+      expect(page).to have_link("Invoices For #{merchant1.name}")
       expect(page).to have_content("Rank: 1")
       expect(page).to have_content("Total Revenue: $28.00")
     end 
@@ -203,6 +205,7 @@ RSpec.describe 'The Admin Merchants Index' do
     expect(page).to have_content("Top selling date for #{merchant1.name} was #{merchant1.format_created_at(merchant1.top_merchant_best_day)}")
   end
     within "#top_merchant-#{merchant2.id}" do 
+    expect(page).to have_link("Invoices For #{merchant2.name}")
       expect(page).to have_content("Top selling date for #{merchant2.name} was #{merchant2.format_created_at(merchant2.top_merchant_best_day)}")
     end 
   end 
