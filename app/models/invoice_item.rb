@@ -23,7 +23,7 @@ class InvoiceItem < ApplicationRecord
     .where('discounts.threshold <= ?', quantity)
     .order(percentage: :desc)
     .first
-  end 
+  end
 
   def discounted_revenue 
     if return_discount.present?

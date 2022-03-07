@@ -1,3 +1,4 @@
+<center>
 <h1> <%= @merchant.name %> </h1>
 <header>
   <%= link_to "#{@merchant.name}'s items", merchant_items_path(@merchant.id), method: :get %>
@@ -25,3 +26,4 @@
     <p>Invoice ID: <%= link_to "#{invoice_item.invoice_id}", merchant_invoices_path(@merchant.id) %></p>
   </div>
 <% end %>
+</center>
