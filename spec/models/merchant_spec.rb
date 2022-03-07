@@ -245,5 +245,12 @@ RSpec.describe Merchant, type: :model do
         expect(@merchant2.five_most_popular_items).to eq([@item4, @item3, @item7, @item6, @item1])
       end
     end
+
+    describe '.cents_to_dollars' do 
+      it 'converts cents to dollars' do 
+        merchant = Merchant.top_five_merchants.first
+        expect(merchant.cents_to_dollars(merchant.total_revenue)).to eq("66650.86")
+      end 
+    end 
   end
 end

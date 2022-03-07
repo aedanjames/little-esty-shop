@@ -1,3 +1,4 @@
+<center>
 <h1><%= "Invoice #{@invoice.id}'s Show Page" %></h1>
 
 <div id="status_form">
@@ -14,8 +15,8 @@
 </div>
 
 <div id= "revenue">
-  <p>Revenue Generated: $<%= @invoice.revenue_display_price %></<br
-  <p>Discounted Revenue Generated: $<%= @invoice.discounted_invoice_revenue %>
+  <p>Revenue Generated: $<%= @invoice.revenue_display_price %></p></<br
+  <p>Discounted Revenue Generated: $<%= @invoice.discounted_invoice_revenue %></p>
 </div>
 
 <h2>Items included in this invoice:</h2>
@@ -27,3 +28,4 @@
         <p>Status: <%= i_item.status %></p><br>
     </div>
 <% end %>
+</center>

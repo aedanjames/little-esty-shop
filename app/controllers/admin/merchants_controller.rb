@@ -21,8 +21,6 @@ class Admin::MerchantsController < ApplicationController
       merchant.update!(name: params[:merchant][:name])
       redirect_to admin_merchant_path(merchant)
       flash[:notice] = "#{merchant.name} has been updated"
-    else
-      redirect_to admin_merchant_path(merchant)
     end
   end
 
