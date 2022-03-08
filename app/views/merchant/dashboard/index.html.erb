@@ -1,8 +1,10 @@
 <center>
-<h1> <%= @merchant.name %> </h1>
+<h1> <%="#{@merchant.name}'s Merchant Dashboard "%> </h1>
 <header>
-  <%= link_to "#{@merchant.name}'s items", merchant_items_path(@merchant.id), method: :get %>
-  <%= link_to "#{@merchant.name}'s invoices", merchant_invoices_path(@merchant.id) %>
+
+<p><%= link_to "#{@merchant.name}'s items", merchant_items_path(@merchant.id), method: :get %></p>
+</p><%= link_to "#{@merchant.name}'s invoices", merchant_invoices_path(@merchant.id) %></p>
+
 </header>
 
 
