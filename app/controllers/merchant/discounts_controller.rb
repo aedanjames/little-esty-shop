@@ -27,6 +27,21 @@ class Merchant::DiscountsController < ApplicationController
     end 
   end
 
+  def new 
+    @merchant = set_merchant
+    @discount = Discount.new
+  end 
+
+  def create 
+    merchant = set_merchant
+    discount = merchant.discounts.new(discount_params)
+    if discount.save
+      redirect_to merchant_discounts_path(merchant.id), flash: {notice: "Discount Created" }
+    else 
+      redirect_to new_merchant_discount_path(merchant.id), flash: {notice: "Discount creation failed. Ensure all fields are completed and percentage is not greater than 100%" }
+    end 
+  end
+
 private
   def set_merchant 
     Merchant.find(params[:merchant_id])
