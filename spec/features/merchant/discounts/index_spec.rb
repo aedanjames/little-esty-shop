@@ -71,12 +71,12 @@ RSpec.describe 'The Merchant Discounts Index' do
 
   it 'has a link that deletes a discount' do 
     visit merchant_discounts_path(@merchant.id)
-    within '#juneteenth' do 
-      expect(page).to have_content("Juneteenth")
-      expect(page).to have_button("Delete Juneteenth")
-      click_button("Delete Juneteenth")
+    within '#five' do 
+      expect(page).to have_content("five")
+      expect(page).to have_button("Delete five")
+      click_button("Delete five")
     end 
     expect(current_path).to eq(merchant_discounts_path(@merchant.id))
-    expect(page).to have_no_content("Juneteenth")
+    expect(page).to have_no_content("five")
   end 
 end
