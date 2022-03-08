@@ -10,4 +10,14 @@ RSpec.describe 'The Merchant Discounts Index' do
     @discount4 = @merchant2.discounts.create!(name: 'nope', threshold: 3, percentage: 10)
   end
 
+  it 'has a form that allows a user to create a new discount' do 
+    visit new_merchant_discount_path(@merchant.id)
+    fill_in 'Name', with: "twofer"
+    fill_in 'Threshold', with: "2"
+    fill_in 'Percentage', with: "50"
+    click_button('Create Discount')
+
+    expect(current_path).to eq(merchant_discounts_path(@merchant.id))
+    expect(page).to have_content("Discount created")
+  end 
 end 
