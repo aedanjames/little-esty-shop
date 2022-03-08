@@ -61,4 +61,11 @@ RSpec.describe 'The Merchant Discounts Index' do
       expect(page).to have_content("2022-06-20")
     end 
   end 
+
+  it 'has a link to bring the user to a form to create a new discount' do 
+    visit merchant_discounts_path(@merchant.id)
+    expect(page).to have_link("Create Discount")
+    click_link("Create Discount")
+    expect(current_path).to eq(new_merchant_discount_path(@merchant.id))
+  end 
 end

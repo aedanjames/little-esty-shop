@@ -3,7 +3,7 @@
   get '/', to: 'application#welcome'
   
   resources :merchants, only: [:show, :index, :update, :post], module: :merchant do
-    resources :discounts, only: [:index, :show, :edit, :update]
+    resources :discounts, only: [:index, :show, :edit, :update, :create, :new]
     resources :invoices, only: [:index, :show, :update]
     resources :dashboard, only: [:index]
     resources :items, only: [:index, :show, :edit, :update, :new, :create]
