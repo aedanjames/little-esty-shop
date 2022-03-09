@@ -7,29 +7,35 @@
 - [How To Use](#how-to-use)
 - [Contributors](#contributors)
 - [Database Design](#database-design)
+- [Discounts Database Design](#discounts-database-design)
 - [User Stories](#user-stories)
 - [Phases](#phases)
 
 ## Overview
-[Little Etsy Shop](https://github.com/wanderlust-create/little-esty-shop) is a third two week-long group project of Module 2 at Turing School Of Software and Engineering back-end engineering program.    
+[Little Etsy Shop](https://github.com/wanderlust-create/little-esty-shop) is a two week-long group project of Module 2 at Turing School Of Software and Engineering back-end engineering program. Discount features were implemented by Aedan Yturralde as the final solo project of the inning, over the course of 6 days.     
 
 ## Goals Achieved    
 * Practice designing a normalized database schema and defining model relationships
 * Utilize advanced routing techniques including namespacing to organize and group like functionality together.
 * Utilize advanced active record techniques to perform complex database queries
+* Implement basic styling/navbar utilizing Bootstrap. 
 
 ## Configuration 
 |             |               |               |               |
 |   :----:    |    :----:     |    :----:     |    :----:     |
-| Ruby 2.7.x  | SQL           | SimpleCov     | Atom          |
+| Ruby 2.7.x  | SQL           | SimpleCov     | Bootstrap 5   |
 | Rails       | ActiveRecord  | Capybara      | VSCode        |
 | RSpec       | HTML5         | ShouldaMatcher| Launchy       |
 | Pry         | Github        | Git           | Heroku        |
 
 ## How to Use 
-**Visit** [This url](https://glacial-journey-57738.herokuapp.com).     
+**Visit** [This url](http://radiant-tor-57964.herokuapp.com).     
 
 ## Contributors 
+👤 **Aedan Yturralde** 
+- [GitHub](https://github.com/aedanjames)
+- [LinkedIn](https://www.linkedin.com/in/aedan-y/)
+
 👤 **Becky Nisttahuz** 
 - [GitHub](https://github.com/benistta)
 - [LinkedIn](https://www.linkedin.com/in/becky-nisttahuz-3926a9227/)
@@ -38,16 +44,15 @@
 - [GitHub](https://github.com/conorbarthel)
 - [LinkedIn](https://www.linkedin.com/in/conor-barthel/)
 
-👤 **Aedan Yturralde** 
-- [GitHub](https://github.com/aedanjames)
-- [LinkedIn](https://www.linkedin.com/in/aedan-y/)
-
 👤 **Tamara Dowis** 
 - [GitHub](https://github.com/wanderlust-create)
 - [LinkedIn](https://www.linkedin.com/in/tamara-dowis/)
 
 ## Database Design
 ![little-etsy-shop-db-design.png](https://i.postimg.cc/2SNYrYPc/little-etsy-shop-db-design.png)
+
+## Discounts Database Design
+![Screen-Shot-2022-03-08-at-7-30-35-PM.png](https://postimg.cc/G9fYKy0y)
 
 ## Requirements
 - must use Rails 5.2.x
