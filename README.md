@@ -52,7 +52,7 @@
 ![little-etsy-shop-db-design.png](https://i.postimg.cc/2SNYrYPc/little-etsy-shop-db-design.png)
 
 ## Discounts Database Design
-![Screen-Shot-2022-03-08-at-7-30-35-PM.png](https://postimg.cc/G9fYKy0y)
+[![Screen-Shot-2022-03-08-at-7-30-35-PM.png](https://i.postimg.cc/fTzKwcBB/Screen-Shot-2022-03-08-at-7-30-35-PM.png)](https://postimg.cc/G9fYKy0y)
 
 ## Requirements
 - must use Rails 5.2.x
