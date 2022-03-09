@@ -17,7 +17,7 @@ RSpec.describe 'The Merchant Invoice Show Page' do
 
   it 'displays all information related to that invoice' do 
     visit merchant_invoice_path(@merchant.id, @invoice1.id)
-    expect(page).to have_content("Merchant Invoices Show Page")
+    expect(page).to have_content("Merchant Invoice #{@invoice1.id} Show Page")
     expect(page).to have_content(@invoice1.id)
     expect(page).to have_content(@invoice1.status)
     expect(page).to have_content(@invoice1.format_created_at(@invoice1.created_at))

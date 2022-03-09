@@ -28,7 +28,7 @@ RSpec.describe 'The Merchant Discounts Index' do
     fill_in 'Percentage', with: "101"
     click_button('Create Discount')
     expect(current_path).to eq(new_merchant_discount_path(@merchant.id))
-    expect(page).to have_content("Discount creation failed. Ensure all fields are completed and percentage is not greater than 100%")
+    expect(page).to have_content("Discount creation failed. Ensure all fields are completed.")
   end 
 
   it 'will not allow a user to create a discount with a threshold < 1' do 
@@ -38,7 +38,7 @@ RSpec.describe 'The Merchant Discounts Index' do
     fill_in 'Percentage', with: "99"
     click_button('Create Discount')
     expect(current_path).to eq(new_merchant_discount_path(@merchant.id))
-    expect(page).to have_content("Discount creation failed. Ensure all fields are completed and percentage is not greater than 100%")
+    expect(page).to have_content("Discount creation failed. Ensure all fields are completed.")
   end 
 
   it 'will not allow the user to submit an incomplete form' do 
@@ -48,6 +48,6 @@ RSpec.describe 'The Merchant Discounts Index' do
     fill_in 'Percentage', with: "10"
     click_button('Create Discount')
     expect(current_path).to eq(new_merchant_discount_path(@merchant.id))
-    expect(page).to have_content("Discount creation failed. Ensure all fields are completed and percentage is not greater than 100%")
+    expect(page).to have_content("Discount creation failed. Ensure all fields are completed.")
   end 
 end 

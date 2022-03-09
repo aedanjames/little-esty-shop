@@ -17,13 +17,13 @@
 
     <div class="container"
       <div class="d-flex align-items-center justify-content-center">
+        <% flash.each do |type, msg| %>
+          <div>
+            <%= msg %>
+          </div>
+        <% end %>
+        <%= yield %>
       </div>
-      <% flash.each do |type, msg| %>
-        <div>
-          <%= msg %>
-        </div>
-      <% end %>
-      <%= yield %>
     </div>
   </body>
 </html>

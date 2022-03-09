@@ -38,7 +38,7 @@ class Merchant::DiscountsController < ApplicationController
     if discount.save
       redirect_to merchant_discounts_path(merchant.id), flash: {notice: "Discount Created" }
     else 
-      redirect_to new_merchant_discount_path(merchant.id), flash: {notice: "Discount creation failed. Ensure all fields are completed and percentage is not greater than 100%" }
+      redirect_to new_merchant_discount_path(merchant.id), flash: {notice: "Discount creation failed. Ensure all fields are completed." }
     end 
   end
 
